@@ -43,11 +43,12 @@ libpb.so:
 
 simple.t:
 	$(CC) $(CFLAGS) -o $@ $(SRCS_T_SIMPLE) $(LDFLAGS) $(TEST_LIBS)
+	@test -d $(INSTALL_DIR)/bin || mkdir -p $(INSTALL_DIR)/bin
 	@mv $@ bin
 
 
 simple.t.run:
-	LD_LIBRARY_PATH=$(LIBPATH) ./bin/simple.t
+	LD_LIBRARY_PATH=$(LIBPATH) $(INSTALL_DIR)/bin/simple.t
 
 clean:
 	@rm -rf lib/*
